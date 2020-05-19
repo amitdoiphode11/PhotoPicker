@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 
 import me.iwf.photopicker.utils.PermissionsUtils;
@@ -60,7 +62,7 @@ public class PhotoPicker {
      * @param requestCode requestCode for result
      */
     public void start(@NonNull Context context,
-                      @NonNull android.support.v4.app.Fragment fragment, int requestCode) {
+                      @NonNull Fragment fragment, int requestCode) {
       if (PermissionsUtils.checkReadStoragePermission(fragment.getActivity())) {
         fragment.startActivityForResult(getIntent(context), requestCode);
       }
@@ -72,7 +74,7 @@ public class PhotoPicker {
      * @param fragment    Fragment to receive result
      */
     public void start(@NonNull Context context,
-                      @NonNull android.support.v4.app.Fragment fragment) {
+                      @NonNull Fragment fragment) {
       if (PermissionsUtils.checkReadStoragePermission(fragment.getActivity())) {
         fragment.startActivityForResult(getIntent(context), REQUEST_CODE);
       }

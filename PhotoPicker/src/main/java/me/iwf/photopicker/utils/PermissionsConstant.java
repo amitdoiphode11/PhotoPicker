@@ -2,7 +2,7 @@ package me.iwf.photopicker.utils;
 
 import android.Manifest;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 /**
  * Created by donglua on 2016/10/19.
