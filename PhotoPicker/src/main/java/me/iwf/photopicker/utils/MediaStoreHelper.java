@@ -2,6 +2,7 @@ package me.iwf.photopicker.utils;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
@@ -49,13 +50,20 @@ public class MediaStoreHelper {
 
     @Override public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
-      if (data == null)  return;
+      if (data == null || data.isAfterLast()) {
+        return;
+      }
       List<PhotoDirectory> directories = new ArrayList<>();
       PhotoDirectory photoDirectoryAll = new PhotoDirectory();
       photoDirectoryAll.setName(context.getString(R.string.__picker_all_image));
       photoDirectoryAll.setId("ALL");
 
-      data.moveToFirst();
+      if (Build.VERSION.SDK_INT >= 29) {
+        //data.moveToFirst();
+        data.moveToPosition(-1);
+      } else
+        data.moveToPrevious();
+
 
       while (data.moveToNext()) {
 
